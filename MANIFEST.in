@@ -1,0 +1,3 @@
+graft almaweb/static
+graft almaweb/templates
+global-exclude *.pyc
