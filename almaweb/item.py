@@ -7,12 +7,10 @@ bp = Blueprint('item', __name__, url_prefix='/item')
 
 @bp.route('/')
 def item_root():
-    message = get_message()
-    return "the item page"
+    return render_template('item.html')
 
-@bp.route('/<mms_id>')
+@bp.route('/<mms_id>', methods=['GET', 'POST'])
 def item_mms_id(mms_id):
-    message = get_message()
     return "the item mms_id is {}".format(mms_id)
 
 @bp.route('/hello')
