@@ -1,6 +1,6 @@
 import json
 import requests
-import xml.dom.minidom
+import xml.dom.minidom as md
 
 # utility functions, reused in various controllers
 def alma_get(resource, apikey, params=None, fmt='json'):
@@ -31,7 +31,7 @@ def alma_post(resource, apikey, payload=None, params=None, fmt='json'):
 
 def pprint_xml(xml_str):
     try:
-        parsed_xml = xml.dom.minidom.parseString(uglyxml, encoding="utf-8")
+        parsed_xml = md.parseString(xml_str)
         return parsed_xml.toprettyxml() 
-    except:
-        return "could not parse xml"
+    except Exception as e:
+        return e

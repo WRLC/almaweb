@@ -16,10 +16,10 @@ def item():
         try:
             item_req = alma_get(API_HOST + GET_BY_BARCODE.format(barcode),
                                 BIBS_API_KEY, fmt='xml')
-            return item_req.url
-            #record_pretty = pprint_xml(item_req.content)
-            #return render_template('show_item.html',
-            #                       record=record_pretty)
+            #return item_req.url
+            record_pretty = pprint_xml(item_req.content)
+            return render_template('show_item.html',
+                                   record=record_pretty)
         except requests.exceptions.HTTPError:
             abort(404, "could not retrieve item {}".format(barcode))
 
