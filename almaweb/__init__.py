@@ -24,9 +24,10 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    from . import utils
-    from . import item
     from . import index
+    from . import item
+    from . import settings
+    from . import utils
     app.register_blueprint(item.bp)
     app.register_blueprint(index.bp)
 

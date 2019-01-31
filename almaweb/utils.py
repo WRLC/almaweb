@@ -1,7 +1,11 @@
+import json
+import requests
+import xml.dom.minidom
+
 # utility functions, reused in various controllers
 def alma_get(resource, apikey, params=None, fmt='json'):
     '''
-    makes a generic alma api call, pass in a resource
+    makes a generic get request to alma api.
     '''
     params = params or {}
     params['apikey'] = apikey
@@ -12,7 +16,7 @@ def alma_get(resource, apikey, params=None, fmt='json'):
 
 def alma_post(resource, apikey, payload=None, params=None, fmt='json'):
     '''
-    makes a generic put request to alma api. puts xml data.
+    makes a generic post request to alma api.
     '''
     payload = payload or {}
     params = params or {}
@@ -25,5 +29,9 @@ def alma_post(resource, apikey, payload=None, params=None, fmt='json'):
     r.raise_for_status()
     return r
 
-def get_message():
-   return "this is the message"
+def pprint_xml(xml_str):
+    try:
+        parsed_xml = xml.dom.minidom.parseString(uglyxml, encoding="utf-8")
+        return parsed_xml.toprettyxml() 
+    except:
+        return "could not parse xml"
